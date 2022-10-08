@@ -1,13 +1,13 @@
 [
   {
-    "title": "Televisor",
-    "price": 1000,
+    "title": "televisor plano",
+    "price": 1500,
     "thumbnail": "https://media.ambito.com/p/e0c57058744b1dd04f3cd5bb6c907d09/adjuntos/239/imagenes/039/792/0039792172/730x0/smart/mate1jpg.jpg",
     "id": 1
   },
   {
-    "title": "Mate",
-    "price": 100,
+    "title": "Microfono",
+    "price": 500,
     "thumbnail": "https://media.ambito.com/p/e0c57058744b1dd04f3cd5bb6c907d09/adjuntos/239/imagenes/039/792/0039792172/730x0/smart/mate1jpg.jpg",
     "id": 2
   },

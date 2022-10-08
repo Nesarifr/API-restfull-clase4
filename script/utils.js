@@ -10,7 +10,7 @@ const typeOfValues = [ "string", "number", "string"]
 
 const verificarRequest= (body)=>{
     let verificarKeys = Object.keys(body); //array con keys para verificar
-    if (verificarKeys.length==3){ //verifica el largo primero
+    if (verificarKeys.length===3){ //verifica el largo primero
         for (let index = 0; index < verificarKeys.length; index++) {
             if(verificarKeys[index]!==arrayKeys[index]){
                 if(arrayKeys.includes(verificarKeys[index])){
@@ -21,8 +21,9 @@ const verificarRequest= (body)=>{
                 return `El tipo de dato en la clave ${verificarKeys[index]} es incorrecto, deberia ser un: ${typeOfValues[index]}`
             }
         }
-        return true
-    }
+        
+    } else return `Esta faltando un dato de la peticion`
+    return true
 }
 module.exports = {verificarRequest};
 

@@ -53,12 +53,13 @@ router.put('/:id', async (req, res)=>{
     try{
         const {id} = req.params
         const upDate = req.body
-        if(Object.keys(upDate).length===3){ //verificar que el body este completo
+        const verificaRequest = verificarRequest(upDate);
+        if(typeof(verificaRequest)!== "string"){ //Si devuelve String es un error, sera mostrado en res.json
             const actualizacion = await datosProductos.actualizaByID(parseInt(id), req.body)
             if(actualizacion){
                 res.json(actualizacion)
             } else res.json({error: 'El producto con ese ID no existe'})
-        } else res.json({error: 'Nuevo producto mal ingresado, falta un campo'}) 
+        } else res.json({error: verificaRequest}) 
     }
     catch{
         res.status(500).send('Error en el servidor')

@@ -1,5 +1,6 @@
 const express = require('express');
-const {Contenedor} = require('./contenedor.js')
+const {Contenedor} = require('../script/contenedor.js')
+const {verificarRequest} = require('../script/utils')
 const router = express.Router();
 const datosProductos = new Contenedor('producto.txt')
 
@@ -34,13 +35,14 @@ router.get('/:id', async (req, res)=>{
 router.post('/', async (req, res)=> {
     try{
         const nuevoProducto = req.body;
-        if(Object.keys(nuevoProducto).length===3){ //verificar que el body este completo
+        const verificaRequest = verificarRequest(req.body);
+        if(typeof(verificaRequest)!== "string"){ //Si devuelve String es un error, sera mostrado en res.json
             const nuevoId = await datosProductos.save(nuevoProducto)
             res.json({
                 id: nuevoId,
                 nuevoProducto: nuevoProducto
             })
-        } else res.json({error: 'Nuevo producto mal ingresado'})        
+        } else res.json({error: verificaRequest})        
     }catch(error){
         res.status(500).send('Error en el servidor')
     }    
